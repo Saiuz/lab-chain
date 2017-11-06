@@ -37,3 +37,5 @@ enode = "enode://28e9c15e15e8a95b8e222ad175daa46a4679044088bfd4862d08203d28f2576
 > admin.addPeer(enode)
 > admin.peers
 ```
+
+Do the same for NODE_2, i.e., add the enode of NODE_2 to NODE_1
