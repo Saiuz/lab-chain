@@ -27,7 +27,7 @@ Run the following command on both the nodes:
 
 ```
 geth --identity="NODE_1" --networkid="999" --verbosity=3 --mine --minerthreads=1 --rpc --rpcaddr 0.0.0.0 console
-geth --identity="NODE_2" --networkid="999" --verbosity=3 --mine --minerthreads=1 --rpc --rpcaddr --rpcport=9001 0.0.0.0 console
+geth --identity="NODE_2" --networkid="999" --verbosity=3 --mine --minerthreads=1 --rpc --rpcaddr 0.0.0.0 --rpcport=9001 console
 ```
 
 # Add the enode of NODE_1 to NODE_2
