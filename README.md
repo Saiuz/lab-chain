@@ -1,6 +1,8 @@
 # lab-chain
 Docker environment for building private Ethereum Blockchain
 
+Here we spin up two nodes on a single machine and peer them with each other. In each of the nodes, we run geth which will mine for the blocks. Follow the steps below to try it out for yourself!
+
 # Build the nodes
 ```
 docker build -t lab_chain_node_1 .
@@ -45,25 +47,25 @@ docker network inspect LAB_CHAIN
 Where LAB_CHAIN is the network that we created! On my Mac, this looks like this:
 
 ```
-        "Containers": {
-            "1c4fbf2c1c826577c477523d204372783c4a5d462a16ff7440b002e329137d7f": {
-                "Name": "pedantic_colden",
-                "EndpointID": "2a7971ba4e7f374de5f18bb741efab3167ed47171e049d9644d0d2e116d6ef2d",
-                "MacAddress": "02:42:ac:14:00:02",
-                "IPv4Address": "172.20.0.2/16",
-                "IPv6Address": ""
-            },
-            "295a9cf3743acd07764344922b3b552948e087df8067282e2f83d0cd6405f109": {
-                "Name": "angry_stonebraker",
-                "EndpointID": "9ebc5c6ee4ceddcbfe35830e49f219f91998b34116e023370a2a7976794d42fc",
-                "MacAddress": "02:42:ac:14:00:03",
-                "IPv4Address": "172.20.0.3/16",
-                "IPv6Address": ""
-            }
-        },
-        "Options": {},
-        "Labels": {}
-        ```
+"Containers": {
+    "1c4fbf2c1c826577c477523d204372783c4a5d462a16ff7440b002e329137d7f": {
+        "Name": "pedantic_colden",
+        "EndpointID": "2a7971ba4e7f374de5f18bb741efab3167ed47171e049d9644d0d2e116d6ef2d",
+        "MacAddress": "02:42:ac:14:00:02",
+        "IPv4Address": "172.20.0.2/16",
+        "IPv6Address": ""
+    },
+    "295a9cf3743acd07764344922b3b552948e087df8067282e2f83d0cd6405f109": {
+        "Name": "angry_stonebraker",
+        "EndpointID": "9ebc5c6ee4ceddcbfe35830e49f219f91998b34116e023370a2a7976794d42fc",
+        "MacAddress": "02:42:ac:14:00:03",
+        "IPv4Address": "172.20.0.3/16",
+        "IPv6Address": ""
+    }
+},
+"Options": {},
+"Labels": {}
+```
         
 So, the IPv4Address is what we need to copy for each node and add it to the enode address in the next step!
 
@@ -75,8 +77,9 @@ enode = "enode://28e9c15e15e8a95b8e222ad175daa46a4679044088bfd4862d08203d28f2576
 
 To add this variable as a peer, issue the following command in the geth console:
 
-```admin.addPeer(enode)```
-
+```
+admin.addPeer(enode)
+```
 The above command should return true
 
 To see the peer that is added, give the following command:
