@@ -10,10 +10,12 @@ docker build -t lab_chain_node_2 .
 
 # Run the nodes
 ```
-docker run --rm -it -p 9000:9000 --net=LAB_CHAIN lab_chain_node_1
+docker run --rm -it -p 9000:9000 --net=LAB_CHAIN -v /Users/jothi/Desktop/lab_chain_node_1:/home/lab-chain-user/.ethereum lab_chain_node_1
 
-docker run --rm -it -p 9001:9001 --net=LAB_CHAIN lab_chain_node_2
+docker run --rm -it -p 9001:9001 --net=LAB_CHAIN -v /Users/jothi/Desktop/lab_chain_node_2:/home/lab-chain-user/.ethereum lab_chain_node_2
 ```
+
+If you notice the docker run commands above, we are mounting a persistent volume on the host machine so that the contents of the .ethereum folder survives container re-starts. The .ethereum folder is where we have all our chain data, user accounts and so on. So it is essential that we persist this folder so that when we stop the docker container running the node, we are able to continue from where we left when we start the container again!
 
 # Set up the Ethereum accounts
 
