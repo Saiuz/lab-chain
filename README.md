@@ -32,7 +32,42 @@ geth --identity="NODE_1" --networkid="999" --verbosity=3 --mine --minerthreads=1
 geth --identity="NODE_2" --networkid="999" --verbosity=3 --mine --minerthreads=1 --rpc --rpcaddr 0.0.0.0 --rpcport=9001 console
 ```
 
-# Add the enode of NODE_1 to NODE_2
+# Inspect the Docker network 
+
+We do this setp such that we need to identify what the node ip address is so that we can configure this on the enode:
+
+just issue the following command:
+
+```
+docker network inspect LAB_CHAIN
+```
+
+Where LAB_CHAIN is the network that we created! On my Mac, this looks like this:
+
+```
+        "Containers": {
+            "1c4fbf2c1c826577c477523d204372783c4a5d462a16ff7440b002e329137d7f": {
+                "Name": "pedantic_colden",
+                "EndpointID": "2a7971ba4e7f374de5f18bb741efab3167ed47171e049d9644d0d2e116d6ef2d",
+                "MacAddress": "02:42:ac:14:00:02",
+                "IPv4Address": "172.20.0.2/16",
+                "IPv6Address": ""
+            },
+            "295a9cf3743acd07764344922b3b552948e087df8067282e2f83d0cd6405f109": {
+                "Name": "angry_stonebraker",
+                "EndpointID": "9ebc5c6ee4ceddcbfe35830e49f219f91998b34116e023370a2a7976794d42fc",
+                "MacAddress": "02:42:ac:14:00:03",
+                "IPv4Address": "172.20.0.3/16",
+                "IPv6Address": ""
+            }
+        },
+        "Options": {},
+        "Labels": {}
+        ```
+        
+So, the IPv4Address is what we need to copy for each node and add it to the enode address in the next step!
+
+# Add the enode of NODE_2 to NODE_1
 
 ```
 enode = "enode://28e9c15e15e8a95b8e222ad175daa46a4679044088bfd4862d08203d28f25761331d1cb45b55b840885160d9883b15371112c83add81ef27856d16591c40e621@172.20.0.3:30303"
@@ -40,4 +75,4 @@ enode = "enode://28e9c15e15e8a95b8e222ad175daa46a4679044088bfd4862d08203d28f2576
 > admin.peers
 ```
 
-Do the same for NODE_2, i.e., add the enode of NODE_2 to NODE_1
+Do the same for NODE_1, i.e., add the enode of NODE_1 to NODE_2
