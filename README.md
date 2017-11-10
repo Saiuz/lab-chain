@@ -72,7 +72,7 @@ So, the IPv4Address is what we need to copy for each node and add it to the enod
 # Add the enode of NODE_2 to NODE_1
 
 ```
-enode = "enode://28e9c15e15e8a95b8e222ad175daa46a4679044088bfd4862d08203d28f25761331d1cb45b55b840885160d9883b15371112c83add81ef27856d16591c40e621@172.20.0.3:30303"
+enode = "enode://some-hex-number-randomly-generated-by-your-local-ethereum-client-that-is-running-replace-it-here@172.20.0.3:30303"
 ```
 
 To add this variable as a peer, issue the following command in the geth console:
