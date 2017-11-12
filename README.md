@@ -1,5 +1,5 @@
 # lab-chain
-Docker environment for building private Ethereum Blockchain
+Docker based environment for building private Ethereum Blockchain on two nodes
 
 Here we spin up two nodes on a single machine and peer them with each other. In each of the nodes, we run geth which will mine for the blocks. Follow the steps below to try it out for yourself!
 
